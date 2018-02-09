@@ -1,0 +1,7 @@
+/.idea/
+*.log
+/*.iml
+lib/*
+bin/
+
+/target/
