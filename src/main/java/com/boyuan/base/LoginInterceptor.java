@@ -66,7 +66,6 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        session.setAttribute("user_avatar",user.getAvatar());
         request.setAttribute("user",user);
         return true;
     }

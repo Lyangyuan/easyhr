@@ -15,13 +15,13 @@ import java.util.List;
  * @time 2018/1/1
  */
 @Controller
-@RequestMapping("/post")
+@RequestMapping("/employee/post")
 public class PostApi {
 
     @Autowired
     private PostService postService;
 
-    private static final String PAGE_PREFIX = "post/%s";
+    private static final String PAGE_PREFIX = "/employee/post/%s";
 
     @RequestMapping("/index")
     public String index(ModelMap model){

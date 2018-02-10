@@ -20,23 +20,23 @@ import java.util.List;
  * @time 2018/1/19
  */
 @Controller
-@RequestMapping("/employee")
+@RequestMapping("/employee/employee")
 public class EmployeeApi {
 
     @Autowired
     private EmployeeService employeeService;
 
-    private static final String PAGE_PREFIX = "employee/%s";
+    private static final String PAGE_PREFIX = "employee/employee/%s";
 
     /**
      * 列表页面
      */
     @RequestMapping("/index")
     public String index(EmployeeDTO employeeDTO, ModelMap model){
-        Page<Employee> page = employeeService.query(employeeDTO);
-        PageResult<List<Employee>> pageResult = PageUtil.getPageResult(page);
-
-        model.addAttribute("pageResult",pageResult);
+//        Page<Employee> page = employeeService.query(employeeDTO);
+//        PageResult<List<Employee>> pageResult = PageUtil.getPageResult(page);
+//
+//        model.addAttribute("pageResult",pageResult);
         return String.format(PAGE_PREFIX,"index");
     }
 
@@ -65,12 +65,12 @@ public class EmployeeApi {
         return "redirect:index";
     }
 
-    @ResponseBody
-    @RequestMapping("/save2")
-    public String save2(){
-
-        return "填写成功";
-    }
+//    @ResponseBody
+//    @RequestMapping("/save2")
+//    public String save2(){
+//
+//        return "填写成功";
+//    }
 
     /**
      * @status ok

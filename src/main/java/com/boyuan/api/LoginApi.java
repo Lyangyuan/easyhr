@@ -54,7 +54,7 @@ public class LoginApi {
         errorMsg = errorMsg == null ? "":errorMsg;
         model.addAttribute("errorMsg",errorMsg);
 
-        return String.format(PAGE_PREFIX,"login");
+        return String.format(PAGE_PREFIX,"index");
     }
 
     /**
@@ -80,7 +80,7 @@ public class LoginApi {
             attributes.addAttribute("errorMsg",e.getMessage());
             return "redirect:login";
         }
-        return "redirect:/dashboard/index";
+        return "redirect:/";
     }
 
     /**

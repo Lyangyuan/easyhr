@@ -8,18 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @time 2018/1/20
  */
 @Controller
-@RequestMapping("/dashboard")
 public class DashboardApi {
 
-    @RequestMapping(value = "/index")
+    /**
+     * 首页
+     */
+    @RequestMapping(value = "/")
     public String index(){
+        // TODO 仪表盘需要的数据
 
         return "index";
-    }
-
-    @RequestMapping(value = "/pannel1")
-    public Object pannel1(){
-
-        return null;
     }
 }
