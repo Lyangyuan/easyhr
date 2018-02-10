@@ -258,11 +258,12 @@ create table `easyhr_resource`(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /* 模板 */
+drop table if EXISTS `easyhr_template`;
 create table `easyhr_template`(
   `id` bigint(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `name` VARCHAR(50) NOT NULL COMMENT '名称',
+  `name` VARCHAR(255) NOT NULL COMMENT '名称',
   `content` TEXT NOT NULL COMMENT '内容',
-  `desc` VARCHAR(50) NOT NULL COMMENT '描述',
+  `comment` VARCHAR(1024) NOT NULL COMMENT '描述',
   `gmt_created` TIMESTAMP NOT NULL COMMENT '创建时间',
   `gmt_modified` TIMESTAMP NOT NULL COMMENT '修改时间',
   `created_user_id` bigint(11) unsigned NOT NULL DEFAULT 0 COMMENT '创建人',

@@ -35,23 +35,20 @@ public class TemplateApi {
     }
 
     @RequestMapping(value = "/add",method = RequestMethod.GET)
-    public String add(){
-
+    public String add(ModelMap model){
         return String.format(PAGE_PREFIX,"save");
     }
 
     @RequestMapping(value = "/edit",method = RequestMethod.GET)
     public String edit(@RequestParam("id") Long id,ModelMap model) throws Exception{
         Template template = templateService.getOne(id);
-        model.addAttribute("template",template);
-
+        model.addAttribute("temp",template);
         return String.format(PAGE_PREFIX,"save");
     }
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String save(@RequestAttribute("user")User user, Template template) throws Exception{
         templateService.save(template,user);
-
         return "redirect:index";
     }
 

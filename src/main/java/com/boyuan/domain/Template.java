@@ -27,8 +27,8 @@ public class Template extends BaseEntity{
     /**
      * 描述
      */
-    @Column(name = "desc")
-    private String desc;
+    @Column(name = "comment")
+    private String comment;
 
     public String getName() {
         return name;
@@ -46,11 +46,11 @@ public class Template extends BaseEntity{
         this.content = content;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getComment() {
+        return comment;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

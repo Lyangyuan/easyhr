@@ -11,7 +11,7 @@
                 <a class="" href="javascript:;">面试管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="#">候选人管理</a></dd>
-                    <dd><a href="#">模板管理</a></dd>
+                    <dd><a href="/interview/template/index">模板管理</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">
