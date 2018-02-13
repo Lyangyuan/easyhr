@@ -43,6 +43,9 @@ public class LoginService {
         if(user == null || !user.getPassword().equals(password)){
             throw new EasyhrException(String.format(ErrorMsg.PASSWORD_OR_ACCOUNT_WRONG,account));
         }
+        if(user.getIsFreeze() == 1){
+            throw new EasyhrException(ErrorMsg.ACCOUNT_FREEZON);
+        }
         // 生成token
         Map<String,Object> tokenData = new HashMap<String,Object>(3);
         tokenData.put("account",account);

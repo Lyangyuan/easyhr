@@ -9,6 +9,7 @@ create table `easyhr_user`(
   `phone` CHAR(11) NOT NULL COMMENT '电话',
   `email` VARCHAR(255) NOT NULL COMMENT '邮箱',
   `address` VARCHAR(255) NOT NULL COMMENT '地址',
+  `is_freeze` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否冻结',
   `gmt_created` TIMESTAMP NOT NULL COMMENT '创建时间',
   `gmt_modified` TIMESTAMP NOT NULL COMMENT '修改时间',
   `created_user_id` bigint(11) unsigned NOT NULL DEFAULT 0 COMMENT '创建人',

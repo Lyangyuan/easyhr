@@ -43,6 +43,9 @@ public class User {
     @Column(name = "is_super_admin")
     private int isSuperAdmin;
 
+    @Column(name="is_freeze")
+    private int isFreeze;
+
     @Column(name = "gmt_created",nullable = false)
     private Timestamp gmtCreated;
 
@@ -51,6 +54,14 @@ public class User {
 
     @Column(name = "is_deleted")
     private int isDeleted;
+
+    public int getIsFreeze() {
+        return isFreeze;
+    }
+
+    public void setIsFreeze(int isFreeze) {
+        this.isFreeze = isFreeze;
+    }
 
     public String getPhone() {
         return phone;

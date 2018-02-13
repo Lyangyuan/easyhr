@@ -4,11 +4,7 @@ package com.boyuan.dto;
  * @author jiangbo
  * @time 2018/1/4
  */
-public class CandidateDTO {
-
-    private int pageIndex = 0;
-
-    private int pageSize = 15;
+public class CandidateDTO extends BaseDTO{
 
     private String name;
 
@@ -16,32 +12,12 @@ public class CandidateDTO {
 
     private Long postId;
 
-    private String sortDir = "desc";
-
-    private String sortCol = "gmtModified";
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public int getPageIndex() {
-        return pageIndex;
-    }
-
-    public void setPageIndex(int pageIndex) {
-        this.pageIndex = pageIndex;
     }
 
     public String getName() {
@@ -58,21 +34,5 @@ public class CandidateDTO {
 
     public void setPostId(Long postId) {
         this.postId = postId;
-    }
-
-    public String getSortDir() {
-        return sortDir;
-    }
-
-    public void setSortDir(String sortDir) {
-        this.sortDir = sortDir;
-    }
-
-    public String getSortCol() {
-        return sortCol;
-    }
-
-    public void setSortCol(String sortCol) {
-        this.sortCol = sortCol;
     }
 }

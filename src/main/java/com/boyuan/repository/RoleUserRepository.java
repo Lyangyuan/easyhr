@@ -2,6 +2,7 @@ package com.boyuan.repository;
 
 import com.boyuan.domain.RoleUser;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -19,4 +20,8 @@ public interface RoleUserRepository extends JpaRepository<RoleUser,Long> {
 
     @Query("select ru from RoleUser ru where ru.isDeleted = 0 and ru.userId = :userId")
     List<RoleUser> findByUserId(@Param("userId") Long userId);
+
+    @Modifying
+    @Query("update RoleUser ru set ru.isDeleted = 1 where ru.userId = :userId")
+    void deleteByUserId(@Param("userId") Long userId);
 }

@@ -10,6 +10,8 @@ public interface ErrorMsg {
 
     String PASSWORD_OR_ACCOUNT_WRONG = "账号或密码错误！！！";
 
+    String ACCOUNT_FREEZON = "该账户已被冻结,无法登陆";
+
     String DATA_NOT_EXIST = "数据不存在";
 
     String SAVE_ERROR = "保存失败";

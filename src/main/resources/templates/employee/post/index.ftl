@@ -73,7 +73,7 @@
                         <td>${post.gmtCreated}</td>
                         <td>${post.createdUser.nickname}</td>
                         <td>
-                            <button id="deletePost" data="${post.id}" class=" layui-btn layui-btn-sm layui-btn-danger">
+                            <button data="${post.id}" class="layui-btn layui-btn-sm layui-btn-danger deletePost">
                                 <i class="layui-icon">&#xe640;</i>
                                 删除
                             </button>
@@ -99,7 +99,7 @@
             $("#addTr").show();
         });
 
-        $("#deletePost").on("click",function () {
+        $(".deletePost").on("click",function () {
             var id = $(this).attr("data");
             layer.msg('您确定要删除此岗位吗?', {
                 time:false,

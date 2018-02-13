@@ -25,10 +25,10 @@
             <li class="layui-nav-item"><a href="#">资源管理</a></li>
 
             <li class="layui-nav-item">
-                <a href="javascript:;">权限管理</a>
+                <a href="#">权限管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="#">角色管理</a></dd>
-                    <dd><a href="#">用户管理</a></dd>
+                    <dd><a href="/permission/user/index">用户管理</a></dd>
                 </dl>
             </li>
         </ul>

@@ -1,86 +1,193 @@
-<#assign base=request.contextPath />
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EasyHR - 用户管理</title>
+<html>
 
-    <link rel="shortcut icon" href="/static/ico/favicon.ico" type="image/x-icon" />
+<#-- head -->
+<#include "/include/head.ftl"/>
 
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/jquery.mmenu.css" rel="stylesheet">
-    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/static/css/climacons-font.css" rel="stylesheet">
-    <link href="/static/plugins/xcharts/css/xcharts.min.css" rel=" stylesheet">
-    <link href="/static/plugins/fullcalendar/css/fullcalendar.css" rel="stylesheet">
-    <link href="/static/plugins/morris/css/morris.css" rel="stylesheet">
-    <link href="/static/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
-    <link href="/static/plugins/jvectormap/css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
-    <link href="/static/css/style.min.css" rel="stylesheet">
-    <link href="/static/css/add-ons.min.css" rel="stylesheet">
-</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
 
-<body>
-<!-- start: Header -->
-<#include "/include/header.ftl"/>
-<!-- end: Header -->
-<div class="container-fluid content">
-    <div class="row">
-        <!-- start: Main Menu -->
-        <#include "/include/menu.ftl"/>
+    <#-- header -->
+    <#include "/include/header.ftl"/>
 
-        <!-- start: Content -->
-        <div class="main">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-laptop"></i> 用户管理</h3>
-                    <ol class="breadcrumb">
-                        <li><i class="fa fa-home"></i><a href="/dashboard/index">首页</a></li>
-                        <li><i class="fa fa-laptop"></i>用户管理</li>
-                    </ol>
+    <#-- menu -->
+    <#include "/include/menu.ftl"/>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <span class="layui-breadcrumb">
+                <a href="/"><i class="layui-icon">&#xe68e;</i>&nbsp;首页</a>
+                <a><cite>用户管理</cite></a>
+            </span>
+
+            <div class="layui-row" style="margin-top: 10px">
+                <div class="layui-col-md12">
+                    <button id="addUser" class="layui-btn layui-btn-normal">
+                        <i class="layui-icon">&#xe654;</i>
+                        添加用户
+                    </button>
                 </div>
             </div>
 
-            <#--其他内容-->
-            <div class="row">
-
-            </div>
-
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>头像</th>
+                    <th>昵称</th>
+                    <th>账号</th>
+                    <th>电话</th>
+                    <th>邮箱</th>
+                    <th>地址</th>
+                    <th>创建时间</th>
+                    <th>角色</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <#list roleUsers as roleUser>
+                    <tr>
+                        <td>
+                            <#if roleUser.user.avatar ??>
+                                <img src="${roleUser.user.avatar}" class="layui-nav-img"/>
+                            <#else>
+                                <span class="layui-badge layui-bg-black">无</span>
+                            </#if>
+                        </td>
+                        <td>${roleUser.user.nickname}</td>
+                        <td>${roleUser.user.account}</td>
+                        <td>
+                            <#if roleUser.user.phone ??>
+                                ${roleUser.user.phone}
+                            <#else>
+                                <span class="layui-badge layui-bg-black">无</span>
+                            </#if>
+                        </td>
+                        <td>
+                            <#if roleUser.user.email ??>
+                            ${roleUser.user.email}
+                            <#else>
+                            <span class="layui-badge layui-bg-black">无</span>
+                        </#if>
+                        </td>
+                        <td>
+                            <#if roleUser.user.address ??>
+                            ${roleUser.user.address}
+                            <#else>
+                            <span class="layui-badge layui-bg-black">无</span>
+                        </#if>
+                        </td>
+                        <td>${roleUser.user.gmtCreated}</td>
+                        <td>${roleUser.role.roleName}</td>
+                        <td>
+                            <#if roleUser.user.isFreeze == 0>
+                                <span class="layui-badge layui-bg-blue">正常</span>
+                            <#else>
+                                <span class="layui-badge">冻结</span>
+                            </#if>
+                        </td>
+                        <td>
+                            <#if roleUser.user.isSuperAdmin == 0>
+                                <#if roleUser.user.isFreeze == 0>
+                                    <a href="/permission/user/freeze?id=${roleUser.user.id}" class=" layui-btn layui-btn-sm layui-btn-danger">
+                                        <i class="layui-icon">&#x1007;</i>
+                                        冻结
+                                    </a>
+                                <#else>
+                                    <a href="/permission/user/freeze?id=${roleUser.user.id}" class=" layui-btn layui-btn-sm layui-btn-normal">
+                                        <i class="layui-icon">&#xe616;</i>
+                                        恢复
+                                    </a>
+                                </#if>
+                                <button data="${roleUser.user.id}" class="layui-btn layui-btn-sm layui-btn-danger deleteUser">
+                                    <i class="layui-icon">&#xe640;</i>
+                                    删除
+                                </button>
+                            <#else>
+                            <button class=" layui-btn layui-btn-sm layui-btn-disabled">
+                                <i class="layui-icon">&#x1007;</i>
+                                不可操作
+                            </button>
+                            </#if>
+                        </td>
+                    </tr>
+                </#list>
+                </tbody>
+            </table>
+            <p style="color:red">新增用户默认密码为：123456789,请通知新增用户尽快修改密码</p>
         </div>
-    </div><!--/container-->
-    <div class="clearfix"></div>
+    </div>
 
-    <script src="/static/js/jquery-2.1.1.min.js"></script>
-    <script src="/static/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <!-- page scripts -->
-    <script src="/static/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js"></script>
-    <script src="/static/plugins/touchpunch/jquery.ui.touch-punch.min.js"></script>
-    <script src="/static/plugins/moment/moment.min.js"></script>
-    <script src="/static/plugins/fullcalendar/js/fullcalendar.min.js"></script>
-    <script src="/static/plugins/flot/jquery.flot.min.js"></script>
-    <script src="/static/plugins/flot/jquery.flot.pie.min.js"></script>
-    <script src="/static/plugins/flot/jquery.flot.stack.min.js"></script>
-    <script src="/static/plugins/flot/jquery.flot.resize.min.js"></script>
-    <script src="/static/plugins/flot/jquery.flot.time.min.js"></script>
-    <script src="/static/plugins/flot/jquery.flot.spline.min.js"></script>
-    <script src="/static/plugins/xcharts/js/xcharts.min.js"></script>
-    <script src="/static/plugins/autosize/jquery.autosize.min.js"></script>
-    <script src="/static/plugins/placeholder/jquery.placeholder.min.js"></script>
-    <script src="/static/plugins/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="/static/plugins/datatables/js/dataTables.bootstrap.min.js"></script>
-    <script src="/static/plugins/raphael/raphael.min.js"></script>
-    <script src="/static/plugins/morris/js/morris.min.js"></script>
-    <script src="/static/plugins/jvectormap/js/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="/static/plugins/jvectormap/js/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="/static/plugins/jvectormap/js/gdp-data.js"></script>
-    <script src="/static/plugins/gauge/gauge.min.js"></script>
-    <script src="/static/js/SmoothScroll.js"></script>
-    <script src="/static/js/jquery.mmenu.min.js"></script>
-    <script src="/static/js/core.min.js"></script>
-    <script src="/static/plugins/d3/d3.min.js"></script>
-    <script src="/static/js/pages/index.js"></script>
+</div>
+
+<div id="addFormDiv" style="padding:10px;" hidden="hidden">
+    <form id="addForm" class="layui-form" action="/permission/user/add" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">化名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="nickname"  lay-verify="required" placeholder="请输入化名" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">账号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="account"  lay-verify="required" placeholder="请输入账号" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色</label>
+            <div class="layui-input-block">
+                <input type="radio" name="role" value="2" title="管理员">
+                <input type="radio" name="role" value="3" title="普通用户" checked>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    //JavaScript代码区域
+    layui.use(['element','layer','form'], function () {
+        var element = layui.element;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+
+        $("#addUser").on("click",function(){
+            $("#addFormDiv").show();
+            layer.open({
+              type: 1,
+              content: $('#addFormDiv'),
+              btnAlign: 'c',
+              area: '380px',
+              btn: ['确认', '取消'],
+              yes: function(index, layero){
+                   $("#addForm").submit();
+              },
+              btn2: function(index, layero){
+                $("#addFormDiv").hide();
+                layer.close(index);
+              }
+            });
+        });
+
+        $(".deleteUser").on("click",function () {
+            var id = $(this).attr("data");
+            layer.msg('您确定要删除此用户吗?', {
+                time:false,
+                shadeClose:true,
+                shade:0.3,
+                btn: ['确认', '取消'],
+                yes: function(index, layero){
+                    window.location.href = "/permission/user/delete?id="+id;
+                }
+                ,btn2: function(index, layero){
+                    layer.closeAll();
+                }
+            });
+        });
+
+    });
+</script>
 </body>
 </html>

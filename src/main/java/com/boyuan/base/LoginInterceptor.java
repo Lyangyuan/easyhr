@@ -60,7 +60,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 获取用户信息
         User user = userService.getUser(account);
         // token不正确,重新登陆
-        if(user.getToken() == null || !user.getToken().equals(token)){
+        if(user.getToken() == null || !user.getToken().equals(token) || user.getIsFreeze() == 1){
             logger.info(String.format(ErrorMsg.TOKEN_WRONG,account,token));
             response.sendRedirect(request.getContextPath() +"/admin/login");
             return false;
