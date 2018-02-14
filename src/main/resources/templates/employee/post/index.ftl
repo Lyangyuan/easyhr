@@ -41,31 +41,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr id="addTr" hidden>
-                    <td colspan="5">
-                        <form class="layui-form" action="/employee/post/save" method="post">
-                            <div class="layui-form-item">
-                                <div class="layui-inline">
-                                    <label class="layui-form-label">名称</label>
-                                    <div class="layui-input-inline">
-                                        <input name="postName" lay-verify="required" autocomplete="off" class="layui-input" type="tel">
-                                    </div>
-                                </div>
-                                <div class="layui-inline">
-                                    <label class="layui-form-label">说明</label>
-                                    <div class="layui-input-inline">
-                                        <input name="postIntroduction" lay-verify="required" autocomplete="off" class="layui-input" type="text">
-                                    </div>
-                                </div>
-                                <div class="layui-inline">
-                                    <div class="layui-input-block">
-                                        <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="demo1">立即提交</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </td>
-                </tr>
                 <#list posts as post>
                     <tr>
                         <td>${post.postName}</td>
@@ -88,15 +63,47 @@
 
 </div>
 
+<div id="addPostDiv" style="padding:10px;" hidden="hidden">
+    <form id="addForm" class="layui-form" action="/employee/post/save" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="postName"  lay-verify="required" placeholder="请输入岗位名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-inline">
+                <input type="text" name="postIntroduction"  lay-verify="required" placeholder="请输入岗位说明" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </form>
+</div>
+
 <script>
     //JavaScript代码区域
-    layui.use(['element','layer'], function () {
+    layui.use(['element','layer','form'], function () {
         var element = layui.element;
         var $ = layui.jquery;
         var layer = layui.layer;
+        var form = layui.form;
 
         $("#addPost").on("click",function () {
-            $("#addTr").show();
+            $("#addPostDiv").show();
+            layer.open({
+              type: 1,
+              content: $('#addPostDiv'),
+              btnAlign: 'c',
+              area: '380px',
+              btn: ['确认', '取消'],
+              yes: function(index, layero){
+                   $("#addForm").submit();
+              },
+              btn2: function(index, layero){
+                $("#addFormDiv").hide();
+                layer.close(index);
+              }
+        });
         });
 
         $(".deletePost").on("click",function () {
