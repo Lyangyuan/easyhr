@@ -44,11 +44,11 @@ public class PermissionInterceptor implements HandlerInterceptor {
         }
 
         // 登陆成功后还需要权限认证
-        if(!authenticateService.checkPermission(user,requestURI)){
-            response.sendRedirect(request.getContextPath() +"/admin/noPermission");
-            return false;
-        }
-        return false;
+//        if(!authenticateService.checkPermission(user,requestURI)){
+//            response.sendRedirect(request.getContextPath() +"/admin/noPermission");
+//            return false;
+//        }
+        return true;
     }
 
     @Override

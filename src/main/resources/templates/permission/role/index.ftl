@@ -1,86 +1,72 @@
-<#assign base=request.contextPath />
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EasyHR - 角色管理</title>
+<html>
 
-    <link rel="shortcut icon" href="/static/ico/favicon.ico" type="image/x-icon" />
+<#-- head -->
+<#include "/include/head.ftl"/>
 
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/jquery.mmenu.css" rel="stylesheet">
-    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/static/css/climacons-font.css" rel="stylesheet">
-    <link href="/static/plugins/xcharts/css/xcharts.min.css" rel=" stylesheet">
-    <link href="/static/plugins/fullcalendar/css/fullcalendar.css" rel="stylesheet">
-    <link href="/static/plugins/morris/css/morris.css" rel="stylesheet">
-    <link href="/static/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
-    <link href="/static/plugins/jvectormap/css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
-    <link href="/static/css/style.min.css" rel="stylesheet">
-    <link href="/static/css/add-ons.min.css" rel="stylesheet">
-</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
 
-<body>
-<!-- start: Header -->
-<#include "/include/header.ftl"/>
-<!-- end: Header -->
-<div class="container-fluid content">
-    <div class="row">
-        <!-- start: Main Menu -->
-        <#include "/include/menu.ftl"/>
+    <#-- header -->
+    <#include "/include/header.ftl"/>
 
-        <!-- start: Content -->
-        <div class="main">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-laptop"></i> 角色管理</h3>
-                    <ol class="breadcrumb">
-                        <li><i class="fa fa-home"></i><a href="/dashboard/index">首页</a></li>
-                        <li><i class="fa fa-laptop"></i>角色管理</li>
-                    </ol>
+    <#-- menu -->
+    <#include "/include/menu.ftl"/>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">
+            <span class="layui-breadcrumb">
+              <a href="/"><i class="layui-icon">&#xe68e;</i>&nbsp;首页</a>
+              <a><cite>角色管理</cite></a>
+            </span>
+
+            <div class="layui-row" style="margin-top: 10px">
+                <div class="layui-col-md12">
+                    <button id="addRole" class="layui-btn layui-btn-disabled">
+                        <i class="layui-icon">&#xe654;</i>
+                        添加角色
+                    </button>
                 </div>
             </div>
 
-            <#--其他内容-->
-            <div class="row">
-
-            </div>
-
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>角色名称</th>
+                    <th>添加时间</th>
+                    <th>创建人</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <#list roles as role>
+                        <tr>
+                            <td>${role.roleName}</td>
+                            <td>${role.gmtCreated}</td>
+                            <td>${role.createdUser.nickname}</td>
+                            <td>
+                                <a href="/permission/role/edit?id=${role.id}" class="layui-btn layui-btn-sm layui-btn-danger">
+                                    <i class="layui-icon">&#xe640;</i>
+                                    编辑权限
+                                </a>
+                            </td>
+                        </tr>
+                    </#list>
+                </tbody>
+            </table>
         </div>
-    </div><!--/container-->
-    <div class="clearfix"></div>
+    </div>
+</div>
 
-    <script src="/static/js/jquery-2.1.1.min.js"></script>
-    <script src="/static/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="/static/js/bootstrap.min.js"></script>
-    <!-- page scripts -->
-    <script src="/static/plugins/jquery-ui/js/jquery-ui-1.10.4.min.js"></script>
-    <script src="/static/plugins/touchpunch/jquery.ui.touch-punch.min.js"></script>
-    <script src="/static/plugins/moment/moment.min.js"></script>
-    <script src="/static/plugins/fullcalendar/js/fullcalendar.min.js"></script>
-    <script src="/static/plugins/flot/jquery.flot.min.js"></script>
-    <script src="/static/plugins/flot/jquery.flot.pie.min.js"></script>
-    <script src="/static/plugins/flot/jquery.flot.stack.min.js"></script>
-    <script src="/static/plugins/flot/jquery.flot.resize.min.js"></script>
-    <script src="/static/plugins/flot/jquery.flot.time.min.js"></script>
-    <script src="/static/plugins/flot/jquery.flot.spline.min.js"></script>
-    <script src="/static/plugins/xcharts/js/xcharts.min.js"></script>
-    <script src="/static/plugins/autosize/jquery.autosize.min.js"></script>
-    <script src="/static/plugins/placeholder/jquery.placeholder.min.js"></script>
-    <script src="/static/plugins/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="/static/plugins/datatables/js/dataTables.bootstrap.min.js"></script>
-    <script src="/static/plugins/raphael/raphael.min.js"></script>
-    <script src="/static/plugins/morris/js/morris.min.js"></script>
-    <script src="/static/plugins/jvectormap/js/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="/static/plugins/jvectormap/js/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="/static/plugins/jvectormap/js/gdp-data.js"></script>
-    <script src="/static/plugins/gauge/gauge.min.js"></script>
-    <script src="/static/js/SmoothScroll.js"></script>
-    <script src="/static/js/jquery.mmenu.min.js"></script>
-    <script src="/static/js/core.min.js"></script>
-    <script src="/static/plugins/d3/d3.min.js"></script>
-    <script src="/static/js/pages/index.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use(['element','layer','form'], function () {
+        var element = layui.element;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+
+    });
+</script>
 </body>
 </html>

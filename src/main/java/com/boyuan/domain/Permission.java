@@ -15,18 +15,29 @@ public class Permission extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "module")
-    private String module;
+    @Column(name = "module_one")
+    private String moduleOne;
+
+    @Column(name = "module_two")
+    private String moduleTwo;
 
     @Column(name = "url")
     private String url;
 
-    public String getModule() {
-        return module;
+    public String getModuleOne() {
+        return moduleOne;
     }
 
-    public void setModule(String module) {
-        this.module = module;
+    public void setModuleOne(String moduleOne) {
+        this.moduleOne = moduleOne;
+    }
+
+    public String getModuleTwo() {
+        return moduleTwo;
+    }
+
+    public void setModuleTwo(String moduleTwo) {
+        this.moduleTwo = moduleTwo;
     }
 
     public String getName() {

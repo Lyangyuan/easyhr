@@ -22,12 +22,12 @@
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="#">备忘录</a></li>
-            <li class="layui-nav-item"><a href="#">资源管理</a></li>
+            <li class="layui-nav-item"><a href="/resource/index">资源管理</a></li>
 
             <li class="layui-nav-item">
                 <a href="#">权限管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="#">角色管理</a></dd>
+                    <dd><a href="/permission/role/index">角色管理</a></dd>
                     <dd><a href="/permission/user/index">用户管理</a></dd>
                 </dl>
             </li>
