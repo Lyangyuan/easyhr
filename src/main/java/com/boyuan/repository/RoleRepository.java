@@ -20,4 +20,7 @@ public interface RoleRepository extends JpaRepository<Role,Long> {
     @Override
     @Query("select role from Role role where role.isDeleted = 0")
     List<Role> findAll();
+
+    @Query("select r from Role r where r.isDeleted = 0 and r.roleName = :roleName")
+    Role findByName(@Param("roleName") String roleName);
 }

@@ -1,28 +1,63 @@
 package com.boyuan.vo;
 
-import com.boyuan.domain.Permission;
-
 import java.util.List;
 
 public class PermissionVO {
 
-    private String module;
+    private Long id;
 
-    private List<Permission> permissions;
+    private String name;
 
-    public String getModule() {
-        return module;
+    private int level;
+
+    private boolean checked;
+
+    private List<PermissionVO> children;
+
+    public PermissionVO(Long id, String name, int level, boolean checked) {
+        this.id = id;
+        this.name = name;
+        this.level = level;
+        this.checked = checked;
     }
 
-    public void setModule(String module) {
-        this.module = module;
+    public List<PermissionVO> getChildren() {
+        return children;
     }
 
-    public List<Permission> getPermissions() {
-        return permissions;
+    public void setChildren(List<PermissionVO> children) {
+        this.children = children;
     }
 
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

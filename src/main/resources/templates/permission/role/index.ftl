@@ -23,10 +23,10 @@
 
             <div class="layui-row" style="margin-top: 10px">
                 <div class="layui-col-md12">
-                    <button id="addRole" class="layui-btn layui-btn-disabled">
+                    <a href="/permission/role/save" class="layui-btn layui-btn-normal">
                         <i class="layui-icon">&#xe654;</i>
                         添加角色
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -46,7 +46,7 @@
                             <td>${role.gmtCreated}</td>
                             <td>${role.createdUser.nickname}</td>
                             <td>
-                                <a href="/permission/role/edit?id=${role.id}" class="layui-btn layui-btn-sm layui-btn-danger">
+                                <a href="/permission/role/save?id=${role.id}" class="layui-btn layui-btn-sm layui-btn-danger">
                                     <i class="layui-icon">&#xe640;</i>
                                     编辑权限
                                 </a>

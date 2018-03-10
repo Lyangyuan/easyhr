@@ -124,9 +124,9 @@
 <div id="addFormDiv" style="padding:10px;" hidden="hidden">
     <form id="addForm" class="layui-form" action="/permission/user/add" method="post">
         <div class="layui-form-item">
-            <label class="layui-form-label">化名</label>
+            <label class="layui-form-label">花名</label>
             <div class="layui-input-inline">
-                <input type="text" name="nickname"  lay-verify="required" placeholder="请输入化名" autocomplete="off" class="layui-input">
+                <input type="text" name="nickname"  lay-verify="required" placeholder="请输入花名" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">

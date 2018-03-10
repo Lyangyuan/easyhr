@@ -2,9 +2,11 @@ package com.boyuan.repository;
 
 import com.boyuan.domain.RolePermission;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -22,4 +24,9 @@ public interface RolePermissionRepository extends JpaRepository<RolePermission,L
 
     @Query("select rp from RolePermission rp where rp.isDeleted = 0 and rp.roleId in :roleIds")
     List<RolePermission> findByRoleIds(@Param("roleIds") List<Long> roleIds);
+
+    @Modifying
+    @Transactional(rollbackOn = Exception.class)
+    @Query("delete from RolePermission rp where rp.roleId = :roleId")
+    void deleteByRoleId(@Param("roleId") Long roleId);
 }

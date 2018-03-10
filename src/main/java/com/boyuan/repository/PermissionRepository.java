@@ -20,4 +20,7 @@ public interface PermissionRepository extends JpaRepository<Permission,Long> {
     @Override
     @Query("select p from Permission p where p.isDeleted = 0")
     List<Permission> findAll();
+
+    @Query("select p from Permission p where p.isDeleted = 0 and p.level = :level and parentId = :parentId")
+    List<Permission> findByLevelAndParentId(@Param("level") int level,@Param("parentId") Long parentId);
 }
