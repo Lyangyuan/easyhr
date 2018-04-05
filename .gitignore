@@ -5,3 +5,4 @@ lib/*
 
 /target/
 *.zip
+application.properties
